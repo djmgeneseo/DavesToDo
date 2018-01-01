@@ -13,20 +13,20 @@ class TodoListViewController: UITableViewController {
     // var b/c array must be a mutable variable
     var itemArray = [Item]()
     
+    let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
+    
     // Make object of UserDefaults class, which holds persistent data in key:value pairs
-    let defaults = UserDefaults.standard
+//    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let newItem = Item()
-        newItem.title = "Surf"
-        itemArray.append(newItem)
+        print (dataFilePath)
         
 //         When the app loads (i.e. after it was force-quit), load array from device's persistent data storage
-        if let lastSavedList = defaults.array(forKey: "TodoListArray") as? [Item] {
-            itemArray = lastSavedList
-        }
+//        if let lastSavedList = defaults.array(forKey: "TodoListArray") as? [Item] {
+//            itemArray = lastSavedList
+//        }
+        loadItemsFromDevice()
     }
 
     //Mark - Tableview Datasource Methods
@@ -64,15 +64,19 @@ class TodoListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        print(itemArray[indexPath.row])
         
+        // DOESN"T UPDATE ITEMS.PLIST
         itemArray[indexPath.row].done = !itemArray[indexPath.row].done
+        
+        // must resave Items to Plist
+        saveItemsToDevice()
         
         // turn on checkmark at end of each row
         // Toggle for checkmark
-        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .none
-        } else {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        }
+//        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
+//            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+//        } else {
+//            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+//        }
         
 //        tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
 
@@ -100,12 +104,10 @@ class TodoListViewController: UITableViewController {
 //                self.itemArray.append(textField.text!)
                 
                 // SAVE persistent data; still need to LOAD data!
-                self.defaults.set(self.itemArray, forKey: "TodoListArray")
+//                self.defaults.set(self.itemArray, forKey: "TodoListArray")
                 
-                // reloads rows and sections of tableView, taking into account the new data. Needs to be done in the main thread.
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+                self.saveItemsToDevice()
+                
             }
             
             // Create textfield inside of popup for the user to type into
@@ -120,6 +122,32 @@ class TodoListViewController: UITableViewController {
             present(alert, animated: true, completion: nil)
     }
     
+    //MARK - model manipulation
+    
+    func saveItemsToDevice() {
+        // convert itemArray into propertyList
+        let encoder = PropertyListEncoder()
+        do {
+            let data = try encoder.encode(itemArray)
+            try data.write(to: dataFilePath!)
+        } catch {
+            print("Error encoding item array, \(error)")
+        }
+        // reloads rows and sections of tableView, taking into account the new data. Needs to be done in the main thread.
+        tableView.reloadData()
+        
+    }
+    
+    func loadItemsFromDevice() {
+        if let data = try? Data(contentsOf: dataFilePath!) {
+            let decoder = PropertyListDecoder()
+            do {
+                itemArray = try decoder.decode([Item].self, from: data)
+            } catch {
+                print("Error decoding item array, \(error)")
+            }
+        }
+    }
     
 }
 
