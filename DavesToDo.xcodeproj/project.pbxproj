@@ -13,6 +13,8 @@
 		63401F5D1FF99E7400AD6A2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63401F5B1FF99E7400AD6A2C /* Main.storyboard */; };
 		63401F5F1FF99E7400AD6A2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63401F5E1FF99E7400AD6A2C /* Assets.xcassets */; };
 		63401F621FF99E7400AD6A2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63401F601FF99E7400AD6A2C /* LaunchScreen.storyboard */; };
+		63DEB2101FFB4DD6004B8F11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63DEB20E1FFB4DD6004B8F11 /* LaunchScreen.storyboard */; };
+		63DEB2111FFB4DD6004B8F11 /* SKINNO.png in Resources */ = {isa = PBXBuildFile; fileRef = 63DEB20F1FFB4DD6004B8F11 /* SKINNO.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		63401F5E1FF99E7400AD6A2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		63401F611FF99E7400AD6A2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		63401F631FF99E7400AD6A2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63DEB20E1FFB4DD6004B8F11 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		63DEB20F1FFB4DD6004B8F11 /* SKINNO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SKINNO.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,8 @@
 		6322A76F1FF9FB9E00E676EE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				63DEB20E1FFB4DD6004B8F11 /* LaunchScreen.storyboard */,
+				63DEB20F1FFB4DD6004B8F11 /* SKINNO.png */,
 				63401F5E1FF99E7400AD6A2C /* Assets.xcassets */,
 				63401F601FF99E7400AD6A2C /* LaunchScreen.storyboard */,
 			);
@@ -158,7 +164,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63DEB2111FFB4DD6004B8F11 /* SKINNO.png in Resources */,
 				63401F621FF99E7400AD6A2C /* LaunchScreen.storyboard in Resources */,
+				63DEB2101FFB4DD6004B8F11 /* LaunchScreen.storyboard in Resources */,
 				63401F5F1FF99E7400AD6A2C /* Assets.xcassets in Resources */,
 				63401F5D1FF99E7400AD6A2C /* Main.storyboard in Resources */,
 			);
@@ -313,6 +321,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W6AA4U45PD;
 				INFOPLIST_FILE = DavesToDo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.DavidMurphy.DavesToDo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -328,6 +337,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = W6AA4U45PD;
 				INFOPLIST_FILE = DavesToDo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.DavidMurphy.DavesToDo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
